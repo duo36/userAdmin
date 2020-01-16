@@ -1,0 +1,32 @@
+server:
+  address: 127.0.0.1
+  port: 8081
+
+management:
+  security:
+    enabled: true
+
+spring:
+  resources:
+    chain:
+      enabled: true
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    content-type: text/html
+    mode: HTML5
+security:
+  oauth2:
+    resource:
+      filter-order: 3
+
+google:
+  http: https://accounts.google.com/o/oauth2/auth?scope=https://www.googleapis.com/auth/userinfo.email+https://www.googleapis.com/auth/userinfo.profile&state=profile&redirect_uri=http://localhost:8081/google/callBack&response_type=code&client_id=736341024691-qvmh50ta3enme50la8frk90jcs71j61b.apps.googleusercontent.com
+  scope: https://www.googleapis.com/auth/userinfo.email+https://www.googleapis.com/auth/userinfo.profile
+  state: profile
+  redirectUri: http://localhost:8081/google/callBack
+  responseType: code
+  clientId: 736341024691-qvmh50ta3enme50la8frk90jcs71j61b.apps.googleusercontent.com
+  clientSecret: KTxz95906w-PFQ1_6JxHH9Kf

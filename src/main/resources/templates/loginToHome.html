@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" th:inline="javascript">
+    $(document).ready(function () {
+        $("#autoClick").click();
+     });
+
+
+     function autoHome() {
+        var authorisation = $("#authorisation").val();
+
+            $.ajax({
+                type: "get",
+                url: "http://localhost:8081/home",
+                beforeSend: function (request) {
+                    request.setRequestHeader("Authorisation", authorisation);
+                },
+                success: function (data) {
+                        console.log(data);
+                     $("#hello").val(data);
+                },
+                error: function (data) {
+                    console.log(data);
+                    $("#hello").val(data.responseText);
+                }
+            })
+     }
+    </script>
+</head>
+<body>
+
+<div>
+    <input type="hidden" id="authorisation" name="authorisation" th:value="${authorisation}" >
+    <a id="autoClick" onclick="autoHome()"></a>
+    <input type="text" id="hello" disabled>
+</div>
+
+</body>
+
+</html>
